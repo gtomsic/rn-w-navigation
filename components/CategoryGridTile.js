@@ -7,12 +7,12 @@ export default function CategoryGridTile({ title, color }) {
     <View style={styles.gridItem}>
       <Pressable
         android_ripple={{ color: Colors.gray }}
-        style={(pressed) => [
+        style={({ pressed }) => [
           styles.pressabbleStyle,
           pressed ? styles.iosPressed : null,
         ]}
       >
-        <View style={styles.innerGridItem}>
+        <View style={[styles.innerGridItem, [{ backgroundColor: color }]]}>
           <Text style={styles.title}>{title}</Text>
         </View>
       </Pressable>
@@ -34,20 +34,22 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     overflow: Platform.OS === "android" ? "hidden" : "visible",
   },
-  iosPressed: {
-    opacity: 0.5,
-  },
   pressabbleStyle: {
     flex: 1,
+  },
+  iosPressed: {
+    opacity: 0.5,
   },
   innerGridItem: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
+    borderRadius: 8,
   },
   title: {
     fontWeight: "bold",
     fontSize: 18,
+    color: Colors.dark,
   },
 });
